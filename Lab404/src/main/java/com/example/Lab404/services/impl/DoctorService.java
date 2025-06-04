@@ -6,6 +6,7 @@ import com.example.Lab404.controllers.dto.DoctorDepartmentDTO;
 import com.example.Lab404.controllers.dto.DoctorStatusDTO;
 import com.example.Lab404.models.Doctor;
 import com.example.Lab404.repositories.DoctorRepository;
+import com.example.Lab404.services.interfaces.IDoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @Service
-public class DoctorService {
+public class DoctorService implements IDoctorService {
     @Autowired
     public DoctorRepository doctorRepository;
 

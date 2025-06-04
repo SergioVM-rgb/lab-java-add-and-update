@@ -71,4 +71,5 @@ public class Doctor {
     public void setPatients(List<Patient> patients) {
         this.patients = patients;
     }
+
 }

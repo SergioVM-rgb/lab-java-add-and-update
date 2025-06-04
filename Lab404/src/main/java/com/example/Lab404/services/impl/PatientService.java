@@ -5,6 +5,7 @@ import com.example.Lab404.models.Doctor;
 import com.example.Lab404.models.Patient;
 import com.example.Lab404.repositories.DoctorRepository;
 import com.example.Lab404.repositories.PatientRepository;
+import com.example.Lab404.services.interfaces.IPatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PatientService {
+public class PatientService implements IPatientService {
     @Autowired
     private PatientRepository patientRepository;
 

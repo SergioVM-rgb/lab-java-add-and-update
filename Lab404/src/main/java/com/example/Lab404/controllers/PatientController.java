@@ -1,17 +1,18 @@
 package com.example.Lab404.controllers;
 
 
+import com.example.Lab404.controllers.dto.PatientDTO;
 import com.example.Lab404.enums.EmployeeStatus;
 import com.example.Lab404.models.Patient;
 import com.example.Lab404.repositories.PatientRepository;
+import com.example.Lab404.services.interfaces.IPatientService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,9 @@ import java.util.List;
 public class PatientController {
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    private IPatientService patientService;
 
 
     @GetMapping("/patients")
@@ -39,15 +43,26 @@ public class PatientController {
         return patientRepository.findByBirthDate(start, end);
     }
 
-    @GetMapping("/patient/doctor-department/{department}")
+    @GetMapping("/patients/doctor-department/{department}")
     @ResponseStatus(HttpStatus.OK)
     public List<Patient> findByDoctorDepartment(@PathVariable String department) {
         return patientRepository.findByDepartmentAdmittedTo(department);
     }
 
-    @GetMapping("/patient/off-doctor")
+    @GetMapping("/patients/off-doctor")
     @ResponseStatus(HttpStatus.OK)
     public List<Patient> findByOffDoctor() {
         return patientRepository.findByOffDoctor(EmployeeStatus.OFF);
+    }
+
+    @PostMapping("/patients")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Patient create(@RequestBody @Valid PatientDTO patientDTO) throws ParseException {
+        return patientService.create(patientDTO);
+    }
+
+    @PutMapping("/patients/{id}")
+    public void update(@PathVariable int id, @RequestBody @Valid PatientDTO patientDTO) {
+        patientService.update(id, patientDTO);
     }
 }

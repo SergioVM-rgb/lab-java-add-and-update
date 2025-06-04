@@ -7,6 +7,6 @@ import com.example.Lab404.models.Doctor;
 
 public interface IDoctorService {
     public Doctor create(DoctorDTO doctorDTO);
-    void updateStatus(String id, DoctorStatusDTO statusDTO);
+    void statusUpdate(String id, DoctorStatusDTO statusDTO);
     void departmentUpdate(String id, DoctorDepartmentDTO departmentDTO);
 }
