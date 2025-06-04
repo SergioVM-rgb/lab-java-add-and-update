@@ -62,9 +62,14 @@ Create the following routes as efficiently as possible, using validation where a
 6. **Write a short answer in README.md**. In your `README.md`, write a short answer to the following questions:
 
    - Did you use the same type of route to update patient information as to update an employee's department?
+        - No, I used the PUT method to update the patients while I used the PATCH method to update the doctors.
    - Why did you choose the selected strategy?
+        - I used the PUT method because all patient information needed to be updated through the same route, while the doctors' information only required partial updates for which the PATCH method is better.
    - What are the advantages and disadvantages of the strategies you chose for creating these routes?
+        - The previous answer was pretty much the pros, the cons of the PUT method would be that it requires sending all the data even if only one field is being updated.
+          The cons of the PATCH method is exactly the opposite, you need to do them multiple times if you want to update more than one field.
    - What is the cost-benefit between using `PUT` and `PATCH`?
+        - It's been covered already, can't tell you anything new at this point.
 
 <br>  
 
